@@ -23,6 +23,7 @@
             android:id="@+id/cart_logo"
             android:layout_width="41dp"
             android:layout_height="36dp"
+            android:contentDescription="@string/this_is_the_cart_logo"
             android:src="@drawable/quick_cart_logo"
             android:layout_gravity="center"
             android:layout_marginStart="15dp">
@@ -46,6 +47,7 @@
             android:layout_height="42dp"
             android:layout_gravity="center"
             android:layout_marginStart="190dp"
+            android:contentDescription="@string/this_is_the_help_mark_on_login_page"
             android:src="@drawable/help">
 
         </ImageView>
@@ -79,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rectangle"
                 android:padding="17dp"
-                android:text="LOGIN TO CONTINUE"
+                android:text="@string/login_to_continue"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_gravity="center"
@@ -102,7 +104,7 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Email"
+                    android:hint="@string/enter_email"
                     android:textColorHint="@color/AccentColor"
                     android:paddingStart="50dp"
                     android:shadowRadius="20" />
@@ -125,7 +127,7 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Password"
+                    android:hint="@string/enter_password"
                     android:textColorHint="@color/AccentColor"
                     android:paddingStart="50dp"
                     android:shadowRadius="20" />
@@ -135,11 +137,11 @@
                 android:id="@+id/tv_forget_pass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Forget Password?"
+                android:text="@string/forget_password"
                 android:textColor="@color/AccentColor"
                 android:textSize="12sp"
                 android:layout_gravity="right"
-                android:layout_marginRight="20dp">
+                android:layout_marginEnd="20dp">
 
             </TextView>
 
@@ -149,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="LOGIN"
+                android:text="@string/login"
                 android:backgroundTint="@color/AccentColor"
                 app:cornerRadius="20dp"
                 android:layout_marginTop="10dp"
@@ -202,6 +204,7 @@
             <ImageView
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/displaymessage"
                 android:src="@drawable/line"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp">
@@ -211,7 +214,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account? Sign Up"
+                android:text="@string/don_t_have_an_account_sign_up"
                 android:id="@+id/noacc"
                 android:layout_gravity="center"
                 android:layout_marginBottom="40dp">
@@ -239,9 +242,9 @@
         app:layout_constraintStart_toStartOf="parent"
         android:backgroundTint="@color/yellow"
         app:cornerRadius="15dp"
-        android:text="HEY! WELCOME BACK\nJust one step away"
+        android:text="@string/hey_welcome_back_njust_one_step_away"
         android:padding="40dp"
-        android:textSize="23dp"
+        android:textSize="23sp"
         android:textColor="@color/AccentColor"
         app:layout_constraintTop_toBottomOf="@+id/upper_menu_bar">
 

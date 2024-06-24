@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">QuickCart</string>
     <string name="quickcart">QuickCart</string>
+    <string name="this_is_the_cart_logo">this is the cart logo</string>
+    <string name="this_is_the_help_mark_on_login_page">this is the help mark on login page</string>
+    <string name="login_to_continue">LOGIN TO CONTINUE</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="login">LOGIN</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign Up</string>
+    <string name="hey_welcome_back_njust_one_step_away">HEY! WELCOME BACK\nJust one step away</string>
+    <string name="displaymessage">displaymessage</string>
+    <string name="create_an_account">CREATE AN ACCOUNT</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="already_have_and_account_login">Already have and account? Login</string>
+    <string name="welcome_to_quickcart">WELCOME TO QuickCart</string>
 </resources>
