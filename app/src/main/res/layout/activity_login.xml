@@ -31,6 +31,7 @@
         </ImageView>
 
         <TextView
+            android:fontFamily="@font/quick_font"
             android:id="@+id/quickcartnameinloginview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,44 +61,44 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="600dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="18dp"
+        android:layout_marginBottom="-50dp"
+        app:cardCornerRadius="50dp"
         app:cardElevation="4dp">
 
         <!-- Content inside the CardView -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="600dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/Logintocontinue_tv"
-                android:layout_marginTop="20dp"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rectangle"
-                android:padding="17dp"
-                android:text="@string/login_to_continue"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_gravity="center"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:textColor="@color/AccentColor" />
+                android:layout_marginTop="25dp"
+                android:padding="17dp"
+                android:fontFamily="@font/quick_font"
+                android:text="@string/login_to_continue"
+                android:textColor="@color/AccentColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/enter_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/person"
                 android:padding="20dp"
-                app:boxCornerRadiusTopStart="1dp"
-                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusBottomEnd="1dp"
                 app:boxCornerRadiusBottomStart="20dp"
-                app:boxCornerRadiusBottomEnd="1dp">
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="1dp"
+                app:startIconDrawable="@drawable/person">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etname"
@@ -105,22 +106,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_email"
-                    android:textColorHint="@color/AccentColor"
+                    android:fontFamily="@font/quick_font"
                     android:paddingStart="50dp"
-                    android:shadowRadius="20" />
+                    android:shadowRadius="15"
+                    android:textColorHint="@color/AccentColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/enter_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/lock"
-                app:endIconDrawable="@drawable/notvisible"
                 android:padding="20dp"
-                app:boxCornerRadiusTopStart="1dp"
-                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusBottomEnd="1dp"
                 app:boxCornerRadiusBottomStart="20dp"
-                app:boxCornerRadiusBottomEnd="1dp">
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="1dp"
+                app:endIconDrawable="@drawable/notvisible"
+                app:startIconDrawable="@drawable/lock">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etpass"
@@ -128,35 +130,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_password"
-                    android:textColorHint="@color/AccentColor"
+                    android:fontFamily="@font/quick_font"
                     android:paddingStart="50dp"
-                    android:shadowRadius="20" />
+                    android:shadowRadius="15"
+                    android:textColorHint="@color/AccentColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tv_forget_pass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:fontFamily="@font/quick_font"
+                android:layout_marginEnd="20dp"
                 android:text="@string/forget_password"
                 android:textColor="@color/AccentColor"
-                android:textSize="12sp"
-                android:layout_gravity="right"
-                android:layout_marginEnd="20dp">
+                android:textSize="12sp">
 
             </TextView>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/login_button"
                 style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/login"
-                android:backgroundTint="@color/AccentColor"
-                app:cornerRadius="20dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/quick_font"
                 android:layout_marginTop="10dp"
-
-                android:layout_gravity="center">
+                android:backgroundTint="@color/AccentColor"
+                android:text="@string/login"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                app:cornerRadius="20dp">
 
             </com.google.android.material.button.MaterialButton>
 
@@ -164,71 +169,77 @@
             <ImageView
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/line"
+                android:layout_gravity="center"
                 android:layout_marginTop="25dp"
-                android:layout_gravity="center">
+                android:src="@drawable/line">
 
             </ImageView>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:padding="10dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="10dp">
+
                 <ImageView
                     android:id="@+id/iv_google_login"
                     android:layout_width="40dp"
+                    android:background="@drawable/square"
+                    android:padding="6dp"
                     android:layout_height="40dp"
                     android:layout_marginEnd="30dp"
                     android:src="@drawable/google">
 
                 </ImageView>
+
                 <ImageView
                     android:id="@+id/iv_facebook_login"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:padding="6dp"
+                    android:background="@drawable/square"
                     android:layout_marginEnd="30dp"
                     android:src="@drawable/facebook">
 
                 </ImageView>
+
                 <ImageView
                     android:id="@+id/iv_apple_login"
                     android:layout_width="40dp"
+                    android:background="@drawable/square"
+                    android:padding="6dp"
                     android:layout_height="40dp"
                     android:src="@drawable/apple">
 
                 </ImageView>
             </LinearLayout>
+
             <ImageView
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/displaymessage"
-                android:src="@drawable/line"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/displaymessage"
+                android:src="@drawable/line">
 
             </ImageView>
 
             <TextView
+                android:id="@+id/noacc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/don_t_have_an_account_sign_up"
-                android:id="@+id/noacc"
+                android:fontFamily="@font/quick_font"
                 android:layout_gravity="center"
-                android:layout_marginBottom="40dp">
+                android:layout_marginBottom="40dp"
+                android:text="@string/don_t_have_an_account_sign_up">
 
             </TextView>
 
 
-
         </LinearLayout>
-
-
-
-
-
 
 
     </androidx.cardview.widget.CardView>
@@ -236,6 +247,7 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quick_font"
         app:layout_constraintBottom_toTopOf="@+id/cardview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -244,7 +256,7 @@
         app:cornerRadius="15dp"
         android:text="@string/hey_welcome_back_njust_one_step_away"
         android:padding="40dp"
-        android:textSize="23sp"
+        android:textSize="21sp"
         android:textColor="@color/AccentColor"
         app:layout_constraintTop_toBottomOf="@+id/upper_menu_bar">
 
