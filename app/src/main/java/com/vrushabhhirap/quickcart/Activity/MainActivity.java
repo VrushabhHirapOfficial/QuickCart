@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.navigation_profile) {
                     loadFragment(new ProfileFragment(),false);
                 }
-                return false;
+                return true;
             }
         });
 

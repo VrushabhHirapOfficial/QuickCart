@@ -106,16 +106,34 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line"
+        app:layout_constraintBottom_toBottomOf="@+id/Linearlayoutforaddreess">
+
+    </ImageView>
+
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@+id/line3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Linearlayoutforaddreess">
+        app:layout_constraintTop_toBottomOf="@+id/line2">
 
     </FrameLayout>
+    <ImageView
+        android:id="@+id/line3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:background="@drawable/line"
+        app:layout_constraintTop_toTopOf="@+id/bottom_navigation">
+
+    </ImageView>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
