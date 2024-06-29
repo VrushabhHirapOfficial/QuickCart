@@ -7,4 +7,12 @@
     <color name="PrimaryColor">#A4FAFA</color>
     <color name="AccentColor">#13004A</color>
     <color name = "yellow">#FFEECD</color>
+
+
+
+    <color name = "purple">#B388FF</color>
+    <color name = "yellodark">#FFD180</color>
+    <color name = "pink">#FF8A80</color>
+    <color name = "lightpurple">#CDD8FF</color>
+
 </resources>
