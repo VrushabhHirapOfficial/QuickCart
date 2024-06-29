@@ -1,4 +1,4 @@
-package com.vrushabhhirap.quickcart;
+package com.vrushabhhirap.quickcart.Activity;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -7,13 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.vrushabhhirap.quickcart.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
