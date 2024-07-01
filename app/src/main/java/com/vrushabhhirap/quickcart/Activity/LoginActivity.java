@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
         noacc = findViewById(R.id.noacc);
         loginButton = findViewById(R.id.login_button);
 

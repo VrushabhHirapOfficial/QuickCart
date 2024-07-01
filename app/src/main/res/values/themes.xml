@@ -6,6 +6,11 @@
         <item name="colorPrimaryContainer">@color/PrimaryColor</item>
         <item name="colorAccent">@color/AccentColor</item>
 
+        <item name="colorSecondary">@color/yellow</item>
+
+
+        <item name="android:statusBarColor" tools:targetapi="l">@color/AccentColor</item>
+
     </style>
 
     <style name="Theme.QuickCart" parent="Base.Theme.QuickCart" />
