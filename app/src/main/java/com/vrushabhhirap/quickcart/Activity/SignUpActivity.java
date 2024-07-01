@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,10 @@ import com.vrushabhhirap.quickcart.R;
 
 public class SignUpActivity extends AppCompatActivity {
     TextView alreadyhaveanacc;
-    MaterialButton signInButton;
+    MaterialButton signUnButton;
+
+
+    ImageView iv_google,iv_facebook,iv_apple;
 
     TextInputEditText name,email,password;
 
@@ -39,7 +43,12 @@ public class SignUpActivity extends AppCompatActivity {
         email = findViewById(R.id.etemail);
         password = findViewById(R.id.etpass);
         alreadyhaveanacc = findViewById(R.id.alreadyhaveacc);
-        signInButton = findViewById(R.id.signUp);
+        signUnButton = findViewById(R.id.signUp);
+
+
+        iv_google = findViewById(R.id.iv_google_login);
+        iv_facebook = findViewById(R.id.iv_facebook_login);
+        iv_apple = findViewById(R.id.iv_apple_login);
 
 
 
@@ -53,10 +62,31 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        signUnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signUp(v);
+            }
+        });
+
+//        Login with goole facebook and apple
+
+        iv_google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        iv_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        iv_apple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
