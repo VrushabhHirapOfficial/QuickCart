@@ -46,6 +46,7 @@
             android:fontFamily="@font/quick_font"
             android:hint="Search"
             android:minHeight="48dp"
+            android:singleLine="true"
             android:padding="10dp"
             android:paddingLeft="20dp">
 
