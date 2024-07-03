@@ -7,6 +7,8 @@
     <color name="PrimaryColor">#A4FAFA</color>
     <color name="AccentColor">#13004A</color>
     <color name = "yellow">#FFEECD</color>
+    <color name="addtocart">#FFA500</color>
+    <color name="buynow">#DC143C</color>
 
 
 

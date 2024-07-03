@@ -76,7 +76,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public void bind(CategoryModel categoryModel) {
             Glide.with(context).load(categoryModel.getImg_url()).into(cat_image);
-            cat_name.setText(categoryModel.getName());
+            cat_name.setText(categoryModel.getType());
         }
     }
 
@@ -93,7 +93,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public void bind(CategoryModel categoryModel) {
             Glide.with(context).load(categoryModel.getImg_url()).into(cat_image);
-            cat_name.setText(categoryModel.getName());
+            cat_name.setText(categoryModel.getType());
         }
     }
 }

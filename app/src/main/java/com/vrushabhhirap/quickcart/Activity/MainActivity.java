@@ -36,12 +36,17 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if(id == R.id.navigation_home){
+
                     loadFragment(new HomeFragment(),true);
+
                 } else if (id == R.id.navigation_categories) {
+
                     loadFragment(new CategoriesFragment(),false);
                 } else if (id == R.id.navigation_cart) {
+
                     loadFragment(new CartFragment(),false);
                 } else if (id == R.id.navigation_profile) {
+
                     loadFragment(new ProfileFragment(),false);
                 }
                 return true;
@@ -51,14 +56,40 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
     }
 
-    public void loadFragment(Fragment fragment,boolean flag){
+    public void loadFragment(Fragment fragment, boolean addToBackStack) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(flag){
-            fragmentTransaction.add(R.id.container,fragment);
-        }else{
-            fragmentTransaction.replace(R.id.container,fragment);
+
+        // Clear any existing fragments
+        for (Fragment existingFragment : fragmentManager.getFragments()) {
+            if (existingFragment != null) {
+                fragmentTransaction.remove(existingFragment);
+            }
         }
+
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.replace(R.id.container, fragment);
+
+        // Add to back stack if required
+        if (addToBackStack) {
+            fragmentTransaction.addToBackStack(null);
+        }
+
+        // Commit the transaction
         fragmentTransaction.commit();
     }
+
+    public void loadFragment_for_detailedproduct(Fragment fragment, boolean addToBackStack) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.add(R.id.container, fragment);
+
+
+        // Commit the transaction
+        fragmentTransaction.commit();
+    }
+
+
 }
