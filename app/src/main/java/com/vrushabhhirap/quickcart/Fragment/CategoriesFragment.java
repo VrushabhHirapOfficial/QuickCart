@@ -1,15 +1,13 @@
 package com.vrushabhhirap.quickcart.Fragment;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +24,11 @@ import com.vrushabhhirap.quickcart.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CategoriesFragment extends Fragment {
 
     RecyclerView catRecyclerView;
-
-
     CategoryAdapter categoryAdapter;
     List<CategoryModel> categoryModelList;
-
     FirebaseFirestore db;
 
     @Override
@@ -48,13 +42,15 @@ public class CategoriesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_categories, container, false);
 
-        catRecyclerView= view.findViewById(R.id.rec_category);
+        catRecyclerView = view.findViewById(R.id.rec_category);
         db = FirebaseFirestore.getInstance();
 
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+        catRecyclerView.setLayoutManager(gridLayoutManager);
 
-        catRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL,false));
+
         categoryModelList = new ArrayList<>();
-        categoryAdapter = new CategoryAdapter(getContext(),categoryModelList);
+        categoryAdapter = new CategoryAdapter(getContext(), categoryModelList);
         catRecyclerView.setAdapter(categoryAdapter);
 
 
@@ -65,20 +61,13 @@ public class CategoriesFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                               CategoryModel categoryModel = document.toObject(CategoryModel.class);
-                               categoryModelList.add(categoryModel);
-                               categoryAdapter.notifyDataSetChanged();
-
-
-
+                                CategoryModel categoryModel = document.toObject(CategoryModel.class);
+                                categoryModelList.add(categoryModel);
+                                categoryAdapter.notifyDataSetChanged();
                             }
-                        } else {
-
-
-
                         }
                     }
                 });
-        return  view;
+        return view;
     }
 }
