@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.vrushabhhirap.quickcart.Model.NewProductModel;
+import com.vrushabhhirap.quickcart.Activity.MainActivity;
+import com.vrushabhhirap.quickcart.Fragment.DetailedProductOverViewFragmentNewProduct;
+import com.vrushabhhirap.quickcart.Fragment.DetailedProductOverViewFragmentPopularProduct;
 import com.vrushabhhirap.quickcart.Model.PopularProductModel;
 import com.vrushabhhirap.quickcart.R;
 
@@ -23,10 +25,12 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductAd
 
     private Context context;
     private List<PopularProductModel> popularProductModelList;
+    private MainActivity mainActivity;
 
-    public PopularProductAdapter(Context context, List<PopularProductModel> popularProductModelList) {
+    public PopularProductAdapter(Context context, List<PopularProductModel> popularProductModelList,MainActivity mainActivity) {
         this.context = context;
         this.popularProductModelList = popularProductModelList;
+        this.mainActivity = mainActivity;
     }
 
     @NonNull
@@ -38,10 +42,31 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductAd
     @Override
     public void onBindViewHolder(@NonNull PopularProductAdapter.ViewHolder holder, int position) {
 
+        PopularProductModel product = popularProductModelList.get(position);
+
         Glide.with(context).load(popularProductModelList.get(position).getImg_url()).into(holder.imageView);
         holder.name.setText(popularProductModelList.get(position).getName());
         holder.price.setText(String.valueOf(popularProductModelList.get(position).getPrice()));
         holder.newRating.setText(popularProductModelList.get(position).getRating());
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("hello", "onClick: ");
+                DetailedProductOverViewFragmentPopularProduct fragment = DetailedProductOverViewFragmentPopularProduct.newInstance(
+                        product.getImg_url(),
+                        product.getName(),
+                        product.getRating(),
+                        product.getPrice(),
+                        product.getDescription()
+                );
+
+                mainActivity.loadFragment_for_detailedproduct(fragment, true);
+
+            }
+        });
 
 
     }

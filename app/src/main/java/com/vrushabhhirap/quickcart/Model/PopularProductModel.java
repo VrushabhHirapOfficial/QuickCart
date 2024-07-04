@@ -1,6 +1,8 @@
 package com.vrushabhhirap.quickcart.Model;
 
-public class PopularProductModel {
+import java.io.Serializable;
+
+public class PopularProductModel implements Serializable {
     String description;
     String img_url;
     String name;

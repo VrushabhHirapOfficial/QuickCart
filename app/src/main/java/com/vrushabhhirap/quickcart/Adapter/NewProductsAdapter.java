@@ -9,17 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vrushabhhirap.quickcart.Activity.MainActivity;
-import com.vrushabhhirap.quickcart.Fragment.DetailedProductOverViewFragment;
+import com.vrushabhhirap.quickcart.Fragment.DetailedProductOverViewFragmentNewProduct;
 
 import com.bumptech.glide.Glide;
-import com.vrushabhhirap.quickcart.Fragment.DetailedProductOverViewFragment;
-import com.vrushabhhirap.quickcart.Fragment.ProfileFragment;
 import com.vrushabhhirap.quickcart.Model.NewProductModel;
 import com.vrushabhhirap.quickcart.R;
 
@@ -63,8 +58,15 @@ public class NewProductsAdapter extends RecyclerView.Adapter<NewProductsAdapter.
             public void onClick(View v) {
 
                 Log.d("hello", "onClick: ");
+                DetailedProductOverViewFragmentNewProduct fragment = DetailedProductOverViewFragmentNewProduct.newInstance(
+                        product.getImg_url(),
+                        product.getName(),
+                        product.getRating(),
+                        product.getPrice(),
+                        product.getDescription()
+                );
 
-                mainActivity.loadFragment_for_detailedproduct(new DetailedProductOverViewFragment(),false);
+                mainActivity.loadFragment_for_detailedproduct(fragment, true);
 
             }
         });
