@@ -17,5 +17,7 @@
     <color name = "yellodark">#FFD180</color>
     <color name = "pink">#FF8A80</color>
     <color name = "lightpurple">#CDD8FF</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
 
 </resources>

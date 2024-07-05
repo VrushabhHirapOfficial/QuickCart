@@ -2,6 +2,7 @@ package com.vrushabhhirap.quickcart.Activity;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateBottomNavigationView(int itemId) {
         bottomNavigationView.setSelectedItemId(itemId);
+    }
+    public void navigateToCart() {
+        loadFragment(new CartFragment(), false);
+        updateBottomNavigationView(R.id.navigation_cart);
     }
 
 
@@ -123,7 +128,11 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new CategoriesFragment(),false);
                 } else if (id == R.id.navigation_cart) {
 
+                    Log.d("raj", "starting the cart fragment: ");
+
                     loadFragment(new CartFragment(),false);
+                    Log.d("raj", "end the cart fragment: ");
+
                 } else if (id == R.id.navigation_profile) {
 
                     loadFragment(new ProfileFragment(),false);
@@ -154,22 +163,6 @@ public class MainActivity extends AppCompatActivity {
         // Commit the transaction
         fragmentTransaction.commit();
     }
-//
-//    public void loadFragment_for_detailedproduct(Fragment fragment, boolean addToBackStack) {
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//
-//        // Replace the current fragment with the new fragment
-//        fragmentTransaction.replace(R.id.container, fragment);
-//
-//        // Add to back stack if required
-//        if (addToBackStack) {
-//            fragmentTransaction.addToBackStack(null);
-//        }
-//
-//        // Commit the transaction
-//        fragmentTransaction.commit();
-//    }
     public void loadFragment_for_detailedproduct(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
