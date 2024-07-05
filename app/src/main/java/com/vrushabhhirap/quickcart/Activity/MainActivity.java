@@ -154,22 +154,31 @@ public class MainActivity extends AppCompatActivity {
         // Commit the transaction
         fragmentTransaction.commit();
     }
-
+//
+//    public void loadFragment_for_detailedproduct(Fragment fragment, boolean addToBackStack) {
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//        // Replace the current fragment with the new fragment
+//        fragmentTransaction.replace(R.id.container, fragment);
+//
+//        // Add to back stack if required
+//        if (addToBackStack) {
+//            fragmentTransaction.addToBackStack(null);
+//        }
+//
+//        // Commit the transaction
+//        fragmentTransaction.commit();
+//    }
     public void loadFragment_for_detailedproduct(Fragment fragment, boolean addToBackStack) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        // Replace the current fragment with the new fragment
-        fragmentTransaction.replace(R.id.container, fragment);
-
-        // Add to back stack if required
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
         if (addToBackStack) {
-            fragmentTransaction.addToBackStack(null);
+            transaction.addToBackStack(null);
         }
-
-        // Commit the transaction
-        fragmentTransaction.commit();
+        transaction.commit();
     }
+
 
     @Override
     public void onBackPressed() {

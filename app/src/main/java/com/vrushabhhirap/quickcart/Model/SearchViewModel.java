@@ -2,32 +2,24 @@ package com.vrushabhhirap.quickcart.Model;
 
 import java.io.Serializable;
 
-public class PopularProductModel implements Serializable {
+public class SearchViewModel implements Serializable {
+
     String description;
     String img_url;
     String name;
     String rating;
     int price;
     String type;
-//    String type;
 
-    public PopularProductModel() {
+    public SearchViewModel() {
     }
 
-    public PopularProductModel(String description, String img_url, String name, String rating, int price,String type) {
+    public SearchViewModel(String description, String img_url, String name, String rating, int price, String type) {
         this.description = description;
         this.img_url = img_url;
         this.name = name;
         this.rating = rating;
         this.price = price;
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
         this.type = type;
     }
 
@@ -69,5 +61,13 @@ public class PopularProductModel implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -104,13 +104,17 @@ public class HomeFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 NewProductModel newProductModel = document.toObject(NewProductModel.class);
-                                // Log the data to ensure it's correct
-                                Log.d("FirestoreData", "Document data: " + document.getData());
+
+
+
                                 newProductModelList.add(newProductModel);
                                 linearLayout.setVisibility(View.VISIBLE);
                                 progressDialog.dismiss();
+                                newProductsAdapter.notifyDataSetChanged();
+
+
                             }
-                            newProductsAdapter.notifyDataSetChanged();
+
                         } else {
                             Toast.makeText(getActivity(), "" + task.getException(), Toast.LENGTH_SHORT).show();
                         }
@@ -136,8 +140,7 @@ public class HomeFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 PopularProductModel popularProductModel = document.toObject(PopularProductModel.class);
-                                // Log the data to ensure it's correct
-                                Log.d("FirestoreData", "Document data: " + document.getData());
+
                                 popularProductModelList.add(popularProductModel);
                             }
                             popularProductAdapter.notifyDataSetChanged();

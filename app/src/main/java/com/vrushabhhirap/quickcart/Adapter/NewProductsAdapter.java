@@ -43,12 +43,9 @@ public class NewProductsAdapter extends RecyclerView.Adapter<NewProductsAdapter.
 
         NewProductModel product = list.get(position);
 
-        Log.d("AdapterData", "Position: " + position + ", Name: " + product.getName() + ", Image URL: " + product.getImg_url());
-
-
         Glide.with(context).load(list.get(position).getImg_url()).into(holder.newimg);
         holder.newName.setText(product.getName() != null ? product.getName() : "No Name");
-        holder.newPrice.setText(String.valueOf(product.getPrice()));
+        holder.newPrice.setText("₹"+(product.getPrice()));
         holder.newRating.setText(list.get(position).getRating());
 
 
@@ -57,7 +54,6 @@ public class NewProductsAdapter extends RecyclerView.Adapter<NewProductsAdapter.
             @Override
             public void onClick(View v) {
 
-                Log.d("hello", "onClick: ");
                 DetailedProductOverViewFragmentNewProduct fragment = DetailedProductOverViewFragmentNewProduct.newInstance(
                         product.getImg_url(),
                         product.getName(),

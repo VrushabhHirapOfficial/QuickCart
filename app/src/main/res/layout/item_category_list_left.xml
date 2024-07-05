@@ -10,7 +10,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="145dp"
         android:layout_height="147dp"
-        android:backgroundTint="@color/AccentColor"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="25dp"
         android:layout_gravity="start">
 
@@ -36,11 +36,14 @@
             <TextView
                 android:id="@+id/cat_name"
                 android:layout_width="match_parent"
+                android:background="@color/AccentColor"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/quick_font"
                 android:text="Category Name"
                 android:textColor="@color/white"
+                android:padding="5dp"
+                android:textSize="16sp"
                 android:textAlignment="center"
                 android:textStyle="bold" />
 

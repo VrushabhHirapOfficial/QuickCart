@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.vrushabhhirap.quickcart.Activity.MainActivity;
 import com.vrushabhhirap.quickcart.Adapter.CategoryAdapter;
 import com.vrushabhhirap.quickcart.Model.CategoryModel;
 import com.vrushabhhirap.quickcart.R;
@@ -51,7 +52,7 @@ public class CategoriesFragment extends Fragment {
 
 
         categoryModelList = new ArrayList<>();
-        categoryAdapter = new CategoryAdapter(getContext(), categoryModelList);
+        categoryAdapter = new CategoryAdapter(getContext(), categoryModelList, (MainActivity) getActivity());
         catRecyclerView.setAdapter(categoryAdapter);
 
 

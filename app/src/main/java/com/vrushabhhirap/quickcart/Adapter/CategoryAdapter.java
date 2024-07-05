@@ -1,6 +1,7 @@
 package com.vrushabhhirap.quickcart.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.vrushabhhirap.quickcart.Activity.MainActivity;
+import com.vrushabhhirap.quickcart.Fragment.DetailedProductOverViewFragmentPopularProduct;
+import com.vrushabhhirap.quickcart.Fragment.SearchResultFragment;
 import com.vrushabhhirap.quickcart.Model.CategoryModel;
+import com.vrushabhhirap.quickcart.Model.PopularProductModel;
+import com.vrushabhhirap.quickcart.Model.SearchViewModel;
 import com.vrushabhhirap.quickcart.R;
 
 import java.util.List;
@@ -20,14 +26,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private Context context;
     private List<CategoryModel> list;
+    private MainActivity mainActivity;
 
     // Define constants for view types
     private static final int VIEW_TYPE_LEFT = 0;
     private static final int VIEW_TYPE_RIGHT = 1;
 
-    public CategoryAdapter(Context context, List<CategoryModel> list) {
+    public CategoryAdapter(Context context, List<CategoryModel> list,MainActivity mainActivity) {
         this.context = context;
         this.list = list;
+        this.mainActivity = mainActivity;
     }
 
     @Override
@@ -56,6 +64,23 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else {
             ((RightViewHolder) holder).bind(categoryModel);
         }
+
+//        SearchViewModel product = list.get(position);
+        CategoryModel product = list.get(position);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (product.getType() != null) {
+                    SearchResultFragment fragment = SearchResultFragment.newInstance(product.getType());
+
+                    mainActivity.loadFragment_for_detailedproduct(fragment, true);
+                } else {
+                    Log.e("CategoryAdapter", "Product type is null!");
+                }
+            }
+        });
     }
 
     @Override
