@@ -59,7 +59,9 @@ public class SearchResultFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_result, container, false);
 
+
         Log.d("SearchResultFragment", "onCreateView: View created");
+        Log.d("SearchResultFragment", "onCreateView: Received type " + type);
 
         firestore = FirebaseFirestore.getInstance();
 
@@ -124,13 +126,12 @@ public class SearchResultFragment extends Fragment {
         }
         if (type != null && type.equalsIgnoreCase("Fashion")) {
             firestore.collection("AllProducts").whereEqualTo("type", "Fashion")
-                    .whereEqualTo("type", type)
+                    .whereEqualTo("type",type)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                            Log.d("pagal", "onComplete: lal alalla");
                             if (task.isSuccessful()) {
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()) {
                                     SearchViewModel searchViewModel = doc.toObject(SearchViewModel.class);

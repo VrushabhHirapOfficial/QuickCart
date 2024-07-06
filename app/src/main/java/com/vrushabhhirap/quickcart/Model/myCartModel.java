@@ -13,13 +13,14 @@ public class myCartModel implements Serializable {
     String ProductRating;
     String ProductType;
     String LastTotal;
+    String ProductId;
 
     public myCartModel() {
     }
 
     public myCartModel(String productName, String productPrice, int totalPrice,
                        String totalQuantity,String ProductImage,String ProductDescription,
-                       String ProductRating,String ProductType,String LastTotal) {
+                       String ProductRating,String ProductType,String LastTotal,String ProductId) {
         ProductName = productName;
         ProductPrice = productPrice;
         this.totalPrice = totalPrice;
@@ -29,6 +30,7 @@ public class myCartModel implements Serializable {
         this.ProductRating = ProductRating;
         this.ProductType = ProductType;
         this.LastTotal = LastTotal;
+        this.ProductId = ProductId;
 
     }
 
@@ -102,5 +104,13 @@ public class myCartModel implements Serializable {
 
     public void setLastTotal(String lastTotal) {
         LastTotal = lastTotal;
+    }
+
+    public String getProductId() {
+        return ProductId;
+    }
+
+    public void setProductId(String productId) {
+        ProductId = productId;
     }
 }

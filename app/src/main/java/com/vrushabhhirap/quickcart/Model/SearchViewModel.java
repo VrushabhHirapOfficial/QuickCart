@@ -14,7 +14,7 @@ public class SearchViewModel implements Serializable {
     public SearchViewModel() {
     }
 
-    public SearchViewModel(String description, String img_url, String name, String rating, int price, String type) {
+    public SearchViewModel(String description, String img_url, String name, String rating, int price,String type) {
         this.description = description;
         this.img_url = img_url;
         this.name = name;

@@ -52,6 +52,7 @@
                     android:layout_marginTop="10dp">
 
                     <TextView
+                        android:fontFamily="@font/quick_font"
                         android:id="@+id/product_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -62,6 +63,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:fontFamily="@font/quick_font"
                         android:id="@+id/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,6 +89,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:fontFamily="@font/quick_font"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,16 +104,16 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:padding="4dp"
                     android:textSize="16sp"
                     android:textColor="@color/black" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="wrap_content">
 
                     <TextView
+                        android:fontFamily="@font/quick_font"
                         android:id="@+id/price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -123,6 +126,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:fontFamily="@font/quick_font"
                         android:id="@+id/price_of_the_product"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -142,7 +146,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -153,6 +158,7 @@
                         android:src="@drawable/minus" />
 
                     <TextView
+                        android:fontFamily="@font/quick_font"
                         android:id="@+id/quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -176,13 +182,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
                     android:orientation="horizontal"
                     android:layout_marginBottom="20dp"
                     android:padding="10dp">
 
                     <com.google.android.material.button.MaterialButton
+                        android:fontFamily="@font/quick_font"
                         android:id="@+id/addtocart"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
@@ -195,6 +202,7 @@
                         app:iconTint="@color/white" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:fontFamily="@font/quick_font"
                         android:id="@+id/buynow"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"

@@ -1,9 +1,14 @@
 package com.vrushabhhirap.quickcart.Fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +21,7 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.api.Context;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,16 +42,22 @@ public class CartFragment extends Fragment {
     private FirebaseAuth auth;
     FirebaseFirestore firestore;
 
-    private TextView totalAmountTextView;
+   // private BroadcastReceiver broadcastReceiver;
+
+    int totalAmountOfProduct;
+
+    MaterialButton remove_item_cart_btn;
+
+    TextView ItemsTotal;
+    TextView DeliveryCharges;
+    TextView allTotal;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-    }
-    public interface CartFragmentCallback {
-        void loadFragmentForDetailedProduct(DetailedProductOverViewFragmentPopularProduct fragment, boolean addToBackStack);
     }
 
     @Override
@@ -62,10 +73,18 @@ public class CartFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         cartModelList = new ArrayList<>();
-        myCartAdapter = new MyCartAdapter(getContext(),cartModelList,(MainActivity) getActivity());
+        myCartAdapter = new MyCartAdapter(getContext(),cartModelList,(MainActivity) getActivity(),auth);
         recyclerView.setAdapter(myCartAdapter);
 
-        totalAmountTextView = view.findViewById(R.id.totaldisplayprice);
+
+        ItemsTotal = view.findViewById(R.id.ItemsTotal);
+        DeliveryCharges = view.findViewById(R.id.DeliveryCharges);
+        allTotal = view.findViewById(R.id.allTotal);
+
+
+        //getting data of total amount from the mycartadapter
+        LocalBroadcastManager.getInstance(getContext())
+                .registerReceiver(mMessageReceiver,new IntentFilter("MyTotalAmount"));
 
 
         if (auth.getCurrentUser() != null){
@@ -105,7 +124,24 @@ public class CartFragment extends Fragment {
         return view;
     }
 
-    public void updateTotalAmount(int totalAmount){
-        totalAmountTextView.setText(String.valueOf(totalAmount));
-    }
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int totalBill = intent.getIntExtra("totalAmount",0);
+            ItemsTotal.setText("₹"+ totalBill);
+            int overalltotal = totalBill + 99;
+
+            if(totalBill>500){
+                DeliveryCharges.setText("FREE");
+                allTotal.setText("₹"+totalBill);
+
+            }else {
+                DeliveryCharges.setText("₹"+"99");
+                allTotal.setText("₹"+overalltotal);
+            }
+
+
+
+        }
+    };
 }

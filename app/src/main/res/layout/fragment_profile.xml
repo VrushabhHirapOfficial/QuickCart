@@ -1,21 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     tools:context=".Fragment.ProfileFragment">
 
 
-    <Button
+<!--    <Button-->
 
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/AccentColor"-->
+<!--        android:text="Logout"-->
+<!--        android:id="@+id/btn_logout">-->
+
+<!--    </Button>-->
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/AccentColor"
-        android:text="Logout"
-        android:id="@+id/btn_logout">
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-    </Button>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/AccentColor"
+            android:fontFamily="@font/quick_font"
+            android:text="Your Profile"
+            android:textSize="27sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 
-</FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="18dp"
+        app:cardCornerRadius="25dp"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            >
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/YourOrders"
+                    android:fontFamily="@font/quick_font"
+                    app:cornerRadius="11dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/AccentColor"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:text="Your Orders"
+                    android:textSize="20sp"
+                    android:padding="14dp">
+
+                </com.google.android.material.button.MaterialButton>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/BuyAgain"
+                    android:fontFamily="@font/quick_font"
+                    app:cornerRadius="11dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/AccentColor"
+                    android:layout_marginLeft="10dp"
+                    android:text="Buy Again"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:padding="14dp">
+
+                </com.google.android.material.button.MaterialButton>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/YourAccount"
+                    android:fontFamily="@font/quick_font"
+                    app:cornerRadius="11dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/AccentColor"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:text="Your Account"
+                    android:textSize="20sp"
+                    android:padding="14dp">
+
+                </com.google.android.material.button.MaterialButton>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/YourList"
+                    android:fontFamily="@font/quick_font"
+                    app:cornerRadius="11dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/AccentColor"
+                    android:layout_marginLeft="10dp"
+                    android:text="Your List"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:padding="14dp">
+
+                </com.google.android.material.button.MaterialButton>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/YourAddresses"
+                    android:fontFamily="@font/quick_font"
+                    app:cornerRadius="11dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/AccentColor"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:text="Your Addresses"
+                    android:textSize="20sp"
+                    android:padding="14dp">
+
+                </com.google.android.material.button.MaterialButton>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/CustomerSupport"
+                    android:fontFamily="@font/quick_font"
+                    app:cornerRadius="11dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/AccentColor"
+                    android:layout_marginLeft="10dp"
+                    android:text="Customer Support"
+                    android:layout_weight="1"
+                    android:textSize="17sp"
+                    android:padding="14dp">
+
+                </com.google.android.material.button.MaterialButton>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line">
+
+        </ImageView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ReturnToHomePage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            app:cornerRadius="40dp"
+            android:padding="20dp"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/AccentColor"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/quick_font"
+            android:textSize="24sp"
+            android:text="RETURN TO HOMEPAGE">
+
+        </com.google.android.material.button.MaterialButton>
+
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line">
+
+        </ImageView>
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,11 @@
 package com.vrushabhhirap.quickcart.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,13 +31,25 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
+
 public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
+
+//    public interface AddToCartListner{
+//        void addToCart();
+//    }
+//
+//    private AddToCartListner addToCartListener;
+//
+//    public void setAddToCartListener(AddToCartListner listener) {
+//        this.addToCartListener = listener;
+//    }
 
     ImageView DetailedImage;
     TextView rating, name, description, price,quantity;
     MaterialButton addtothecart, buynow;
     ImageView additems, removeitems;
     String LastTotal;
+
 
     int totalQuantity = 1;
     int totalPrice;
@@ -216,7 +230,9 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
         return view;
 
     }
-    private void addToCart(){
+    public void addToCart(){
+
+
         String saveCurrentTime,saveCurrentDate;
 
         Calendar calForDate = Calendar.getInstance();

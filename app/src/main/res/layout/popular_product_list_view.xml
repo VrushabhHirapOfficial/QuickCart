@@ -30,6 +30,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
+                    android:fontFamily="@font/quick_font"
                     android:id="@+id/rating_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+
                 android:id="@+id/all_item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
