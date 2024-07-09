@@ -109,7 +109,7 @@ public class CartFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     myCartModel myCartModel1 = documentSnapshot.toObject(myCartModel.class);
-                                    int tempTotalQuantity = documentSnapshot.getLong("totalQuantity").intValue();
+                                    int tempTotalQuantity = Integer.parseInt( String.valueOf(documentSnapshot.getLong("totalQuantity")));
                                     myCartModel1.setTotalQuantity(String.valueOf(tempTotalQuantity)); // Pass String value
                                     cartModelList.add(myCartModel1);
                                     myCartAdapter.notifyDataSetChanged();

@@ -261,13 +261,13 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
         cartMap.put("ProductRating", rating.getText().toString());
 
 
+        cartMap.put("ProductImage", popularProduct.getImg_url());
         cartMap.put("ProductName",name.getText().toString());
         cartMap.put("ProductPrice",price.getText().toString());
         cartMap.put("currentTime",saveCurrentTime);
         cartMap.put("currentDate",saveCurrentDate);
         cartMap.put("totalQuantity",quantity.getText().toString());
         cartMap.put("totalPrice",totalPrice);
-        cartMap.put("ProductImage", popularProduct.getImg_url());
 
         firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
                 .collection("User").add(cartMap)
@@ -296,13 +296,13 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
 
     // Static method to create a new instance of the fragment with data
     public static DetailedProductOverViewFragmentPopularProduct newInstance (String
-    imgUrl, String name, String rating,int price, String description, String type){
+    imgUrl, String name, String rating,String price, String description, String type){
         DetailedProductOverViewFragmentPopularProduct fragment = new DetailedProductOverViewFragmentPopularProduct();
         Bundle args = new Bundle();
         args.putString("img_url", imgUrl);
         args.putString("name", name);
         args.putString("rating", rating);
-        args.putInt("price", price);
+        args.putString("price", price);
         args.putString("description", description);
         args.putString("type", type);
 

@@ -68,7 +68,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
                         product.getImg_url(),
                         product.getName(),
                         product.getRating(),
-                        product.getPrice(),
+                        String.valueOf(product.getPrice()),
                         product.getDescription(),
                         product.getType()
                 );
@@ -80,7 +80,8 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
         holder.AddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCart(product);
+                Toast.makeText(context, "this is the add to cart ", Toast.LENGTH_SHORT).show();
+                //addToCart(product);
             }
         });
     }

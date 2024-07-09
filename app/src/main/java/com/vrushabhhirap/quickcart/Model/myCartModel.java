@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class myCartModel implements Serializable {
 
     String ProductName;
-    int ProductPrice; // Changed to int
+    String ProductPrice; // Changed to int
     int totalPrice;
     String totalQuantity;
     String ProductImage;
@@ -19,7 +19,7 @@ public class myCartModel implements Serializable {
     public myCartModel() {
     }
 
-    public myCartModel(String productName, int productPrice, int totalPrice,
+    public myCartModel(String productName, String  productPrice, int totalPrice,
                        String totalQuantity, String ProductImage, String ProductDescription,
                        String ProductRating, String ProductType, String LastTotal, String ProductId, String documentId) {
         ProductName = productName;
@@ -43,11 +43,11 @@ public class myCartModel implements Serializable {
         ProductName = productName;
     }
 
-    public int getProductPrice() {
+    public String getProductPrice() {
         return ProductPrice;
     }
 
-    public void setProductPrice(int productPrice) {
+    public void setProductPrice(String productPrice) {
         ProductPrice = productPrice;
     }
 

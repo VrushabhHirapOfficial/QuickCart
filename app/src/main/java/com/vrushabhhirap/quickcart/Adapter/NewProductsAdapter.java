@@ -58,7 +58,7 @@ public class NewProductsAdapter extends RecyclerView.Adapter<NewProductsAdapter.
                         product.getImg_url(),
                         product.getName(),
                         product.getRating(),
-                        product.getPrice(),
+                        String.valueOf(product.getPrice()),
                         product.getDescription()
                 );
 
