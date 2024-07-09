@@ -68,7 +68,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
                         product.getImg_url(),
                         product.getName(),
                         product.getRating(),
-                        String.valueOf(product.getPrice()),
+                        (product.getPrice()),
                         product.getDescription(),
                         product.getType()
                 );

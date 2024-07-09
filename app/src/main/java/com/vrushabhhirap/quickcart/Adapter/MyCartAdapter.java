@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.protobuf.StringValue;
 import com.vrushabhhirap.quickcart.Activity.MainActivity;
 import com.vrushabhhirap.quickcart.Fragment.CartFragment;
 import com.vrushabhhirap.quickcart.Fragment.DetailedProductOverViewFragmentPopularProduct;
@@ -109,7 +110,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                         product.getProductImage(),
                         product.getProductName(),
                         product.getProductRating(),
-                        product.getProductPrice(),
+                        Integer.parseInt(product.getProductPrice()),
                         product.getProductDescription(),
                         product.getProductType()
                 );

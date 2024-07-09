@@ -296,13 +296,13 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
 
     // Static method to create a new instance of the fragment with data
     public static DetailedProductOverViewFragmentPopularProduct newInstance (String
-    imgUrl, String name, String rating,String price, String description, String type){
+    imgUrl, String name, String rating,int price, String description, String type){
         DetailedProductOverViewFragmentPopularProduct fragment = new DetailedProductOverViewFragmentPopularProduct();
         Bundle args = new Bundle();
         args.putString("img_url", imgUrl);
         args.putString("name", name);
         args.putString("rating", rating);
-        args.putString("price", price);
+        args.putInt("price", price);
         args.putString("description", description);
         args.putString("type", type);
 

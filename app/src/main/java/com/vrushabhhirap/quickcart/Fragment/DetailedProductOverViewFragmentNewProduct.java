@@ -192,13 +192,13 @@ public class DetailedProductOverViewFragmentNewProduct extends Fragment {
     }
 
     // Static method to create a new instance of the fragment with data
-    public static DetailedProductOverViewFragmentNewProduct newInstance(String Img_url, String name, String rating, String price, String description) {
+    public static DetailedProductOverViewFragmentNewProduct newInstance(String Img_url, String name, String rating, int price, String description) {
         DetailedProductOverViewFragmentNewProduct fragment = new DetailedProductOverViewFragmentNewProduct();
         Bundle args = new Bundle();
         args.putString("Img_url", Img_url);
         args.putString("name", name);
         args.putString("rating", rating);
-        args.putString("price", price);
+        args.putInt("price", price);
         args.putString("description", description);
         fragment.setArguments(args);
         return fragment;

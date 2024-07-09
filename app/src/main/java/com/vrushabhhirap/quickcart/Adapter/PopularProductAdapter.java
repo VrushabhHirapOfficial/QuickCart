@@ -60,7 +60,7 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductAd
                         product.getImg_url(),
                         product.getName(),
                         product.getRating(),
-                        String.valueOf(product.getPrice()),
+                        (product.getPrice()),
                         product.getDescription(),
                         product.getType()
                 );
