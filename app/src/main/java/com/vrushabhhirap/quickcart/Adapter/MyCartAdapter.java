@@ -61,9 +61,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     public void onBindViewHolder(@NonNull MyCartAdapter.ViewHolder holder, int position) {
         myCartModel product = list.get(position);
 
-        holder.ProductName.setText(product.getProductName());
-        holder.ProductPrice.setText("₹" + product.getProductPrice());
-        holder.totalQuantity.setText(product.getTotalQuantity());
+        holder.ProductName.setText(""+product.getProductName());
+        holder.ProductPrice.setText("₹" + (product.getProductPrice()));
+        holder.totalQuantity.setText((""+product.getTotalQuantity()));
         holder.totalPrice.setText("₹" + product.getTotalPrice());
         Glide.with(context).load(product.getProductImage()).into(holder.ProductImage);
 
@@ -82,24 +82,24 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             public void onClick(View v) {
                 Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
 
-//                int position = holder.getAdapterPosition();
-//                FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-//
-//                firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
-//                        .collection("User").document(list.get(position).getDocumentId())
-//                        .delete()
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    list.remove(position);
-//                                    notifyItemRemoved(position);
-//                                    Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
-//                                } else {
-//                                    Toast.makeText(context, "Failed to remove item from cart", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
+                int position = holder.getAdapterPosition();
+                FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+                firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
+                        .collection("User").document(list.get(position).getDocumentId())
+                        .delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    list.remove(position);
+                                    notifyItemRemoved(position);
+                                    Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(context, "Failed to remove item from cart", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 

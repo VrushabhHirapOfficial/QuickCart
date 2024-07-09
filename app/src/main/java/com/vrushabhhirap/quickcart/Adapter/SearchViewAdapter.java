@@ -81,7 +81,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "this is the add to cart ", Toast.LENGTH_SHORT).show();
-                //addToCart(product);
+                addToCart(product);
             }
         });
     }
