@@ -109,9 +109,6 @@ public class CartFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                                     myCartModel myCartModel1 = documentSnapshot.toObject(myCartModel.class);
-                                    int tempTotalQuantity = Integer.parseInt( String.valueOf(documentSnapshot.getLong("totalQuantity")));
-                                    myCartModel1.setTotalQuantity(String.valueOf(tempTotalQuantity)); // Pass String value
-                                    /*
                                     //EDIT BY HARI -- 9-July -- START
                                     //Issue is "documentSnapshot.getLong()", instead we need to use "documentSnapshot.getString()" as its already string in database.
                                     //remove the tempTotalQuantity & set total quantity as below.
@@ -119,7 +116,6 @@ public class CartFragment extends Fragment {
                                     myCartModel1.setTotalQuantity(documentSnapshot.getString("totalQuantity"));
 
                                     //EDIT BY HARI -- 9-July -- END
-                                    */
                                     cartModelList.add(myCartModel1);
                                     myCartAdapter.notifyDataSetChanged();
                                 }
