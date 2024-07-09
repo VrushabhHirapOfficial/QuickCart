@@ -43,13 +43,9 @@ public class CartFragment extends Fragment {
     RecyclerView recyclerView;
     List<myCartModel> cartModelList;
     MyCartAdapter myCartAdapter;
-    private FirebaseAuth auth;
     FirebaseFirestore firestore;
     MaterialButton ProceedToPayment_btn;
 
-    int totalAmountOfProduct;
-
-    MaterialButton remove_item_cart_btn;
     MainActivity mainActivity;
 
     TextView ItemsTotal;
@@ -72,7 +68,7 @@ public class CartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         Log.d(TAG_FRAGMENT, "onCreateView called");
 
-        auth = FirebaseAuth.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
         recyclerView = view.findViewById(R.id.mycartitems_recyclerview);
@@ -87,16 +83,13 @@ public class CartFragment extends Fragment {
         allTotal = view.findViewById(R.id.allTotal);
 
         ProceedToPayment_btn = view.findViewById(R.id.ProceedToPayment_btn);
-        ProceedToPayment_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG_FRAGMENT, "ProceedToPayment_btn clicked");
-                mainActivity.loadFragment_for_detailedproduct(new ProfileFragment_YourAddressesFragment(), true);
-            }
+        ProceedToPayment_btn.setOnClickListener(v -> {
+            Log.d(TAG_FRAGMENT, "ProceedToPayment_btn clicked");
+            mainActivity.loadFragment_for_detailedproduct(new ProfileFragment_YourAddressesFragment(), true);
         });
 
         // Registering BroadcastReceiver
-        LocalBroadcastManager.getInstance(getContext())
+        LocalBroadcastManager.getInstance(requireContext())
                 .registerReceiver(mMessageReceiver, new IntentFilter("MyTotalAmount"));
         Log.d(TAG_BROADCAST, "BroadcastReceiver registered for MyTotalAmount");
 
@@ -162,7 +155,7 @@ public class CartFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mMessageReceiver);
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(mMessageReceiver);
         Log.d(TAG_BROADCAST, "BroadcastReceiver unregistered");
     }
 }
