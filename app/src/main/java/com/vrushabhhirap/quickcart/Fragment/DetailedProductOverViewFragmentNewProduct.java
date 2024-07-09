@@ -37,6 +37,7 @@ public class DetailedProductOverViewFragmentNewProduct extends Fragment {
 
     int totalQuantity = 1;
     int totalPrice;
+    MainActivity mainActivity;
 
 
     NewProductModel product;
@@ -44,7 +45,15 @@ public class DetailedProductOverViewFragmentNewProduct extends Fragment {
     FirebaseAuth auth;
     private FirebaseFirestore firestore;
 
-    private String productId; // or any other data type you want to pass
+    private String productId;
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Get reference to the MainActivity
+        if (getActivity() instanceof MainActivity) {
+            mainActivity = (MainActivity) getActivity();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -83,6 +92,13 @@ public class DetailedProductOverViewFragmentNewProduct extends Fragment {
         description.setText(product.getDescription());
 
         totalPrice = product.getPrice() * totalQuantity;
+
+        buynow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.loadFragment_for_detailedproduct(new ProfileFragment_YourAddressesFragment(),true);
+            }
+        });
 
 
 

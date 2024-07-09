@@ -34,21 +34,12 @@ import java.util.HashMap;
 
 public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
 
-//    public interface AddToCartListner{
-//        void addToCart();
-//    }
-//
-//    private AddToCartListner addToCartListener;
-//
-//    public void setAddToCartListener(AddToCartListner listener) {
-//        this.addToCartListener = listener;
-//    }
-
     ImageView DetailedImage;
     TextView rating, name, description, price,quantity;
     MaterialButton addtothecart, buynow;
     ImageView additems, removeitems;
     String LastTotal;
+    MainActivity mainActivity;
 
 
     int totalQuantity = 1;
@@ -62,6 +53,15 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
 
     FirebaseAuth auth;
     private FirebaseFirestore firestore;
+
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Get reference to the MainActivity
+        if (getActivity() instanceof MainActivity) {
+            mainActivity = (MainActivity) getActivity();
+        }
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detailed_product_over_view, container, false);
@@ -80,6 +80,7 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
         buynow = view.findViewById(R.id.buynow);
         additems = view.findViewById(R.id.add_item);
         removeitems = view.findViewById(R.id.subtract_item);
+
 
 
 
@@ -184,6 +185,15 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
             }
         }
 
+        //buy now
+        buynow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.loadFragment_for_detailedproduct(new ProfileFragment_YourAddressesFragment(),true);
+            }
+        });
+
+        //add to cart
         addtothecart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,10 +282,7 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
 
                     }
                 });
-
-
     }
-
 
 
     private void setProductDetails (String imgUrl, String name, String rating,int price, String

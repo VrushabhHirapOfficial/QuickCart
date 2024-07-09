@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class myCartModel implements Serializable {
 
     String ProductName;
-    String ProductPrice;
+    int ProductPrice; // Changed to int
     int totalPrice;
     String totalQuantity;
     String ProductImage;
@@ -14,13 +14,14 @@ public class myCartModel implements Serializable {
     String ProductType;
     String LastTotal;
     String ProductId;
+    String documentId;
 
     public myCartModel() {
     }
 
-    public myCartModel(String productName, String productPrice, int totalPrice,
-                       String totalQuantity,String ProductImage,String ProductDescription,
-                       String ProductRating,String ProductType,String LastTotal,String ProductId) {
+    public myCartModel(String productName, int productPrice, int totalPrice,
+                       String totalQuantity, String ProductImage, String ProductDescription,
+                       String ProductRating, String ProductType, String LastTotal, String ProductId, String documentId) {
         ProductName = productName;
         ProductPrice = productPrice;
         this.totalPrice = totalPrice;
@@ -31,7 +32,7 @@ public class myCartModel implements Serializable {
         this.ProductType = ProductType;
         this.LastTotal = LastTotal;
         this.ProductId = ProductId;
-
+        this.documentId = documentId;
     }
 
     public String getProductName() {
@@ -42,11 +43,11 @@ public class myCartModel implements Serializable {
         ProductName = productName;
     }
 
-    public String getProductPrice() {
+    public int getProductPrice() {
         return ProductPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(int productPrice) {
         ProductPrice = productPrice;
     }
 
@@ -112,5 +113,13 @@ public class myCartModel implements Serializable {
 
     public void setProductId(String productId) {
         ProductId = productId;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 }

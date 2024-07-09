@@ -40,10 +40,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     int totalAmount = 0;
     FirebaseAuth auth;
     private LocalBroadcastManager localBroadcastManager;
-
     private MainActivity mainActivity;
 
-    public MyCartAdapter(Context context, List<myCartModel> list,MainActivity mainActivity,FirebaseAuth auth) {
+    public MyCartAdapter(Context context, List<myCartModel> list, MainActivity mainActivity, FirebaseAuth auth) {
         this.context = context;
         this.list = list;
         this.mainActivity = mainActivity;
@@ -58,81 +57,57 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         return new MyCartAdapter.ViewHolder(view);
     }
 
-    @Override
     public void onBindViewHolder(@NonNull MyCartAdapter.ViewHolder holder, int position) {
-
         myCartModel product = list.get(position);
 
-        holder.ProductName.setText(list.get(position).getProductName());
-        holder.ProductPrice.setText("₹"+list.get(position).getProductPrice());
-        holder.totalQuantity.setText(list.get(position).getTotalQuantity());
-        holder.totalPrice.setText("₹"+(list.get(position).getTotalPrice()));
-        Glide.with(context).load(list.get(position).getProductImage()).into(holder.ProductImage);
+        holder.ProductName.setText(product.getProductName());
+        holder.ProductPrice.setText("₹" + product.getProductPrice());
+        holder.totalQuantity.setText(String.valueOf(product.getTotalQuantity()));
+        holder.totalPrice.setText("₹" + product.getTotalPrice());
+        Glide.with(context).load(product.getProductImage()).into(holder.ProductImage);
 
-
-//        Total amount pass to the cart activity
-        totalAmount = totalAmount + list.get(position).getTotalPrice();
+        // Total amount pass to the cart activity
+        totalAmount = 0;
+        for (myCartModel item : list) {
+            totalAmount += item.getTotalPrice();
+        }
         Intent intent = new Intent("MyTotalAmount");
-        intent.putExtra("totalAmount",totalAmount);
-
+        intent.putExtra("totalAmount", totalAmount);
         localBroadcastManager.sendBroadcast(intent);
 
-
-
-//        Remove button in the cart
+        // Remove button in the cart
         holder.remove_item_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-                Toast.makeText(context, "this is work in progress", Toast.LENGTH_SHORT).show();
-//                try{
-//                    int position = holder.getAdapterPosition();
-//                    myCartModel product = list.get(position);
-//
-//                    // Remove the item from the list
-//                    list.remove(position);
-//                    notifyItemRemoved(position);
-//
-//                    // Remove the item from Firestore
-//                    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-//                    firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
-//                            .collection("User").document(product.getProductId())
-//                            .delete()
-//                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Void> task) {
-//                                    if (task.isSuccessful()) {
-//                                        // Update the list and total amount here
-//                                        list.remove(position);
-//                                        notifyItemRemoved(position);
-//                                        //totalAmount -= product.getTotalPrice();
-//                                        //mainActivity.getCartFragment().updateTotalAmount(totalAmount);
-//                                    } else {
-//                                        Log.e("MyCartAdapter", "Error removing item from cart", task.getException());
-//                                    }
-//                                }
-//                            });
-//
-//                    // Update the total amount
-////                totalAmount -= product.getTotalPrice();
-////                mainActivity.getCartFragment().updateTotalAmount(totalAmount);
-//                }catch (Exception e){
-//                    Log.d("removebutton", "onClick: "+e.getMessage());
-//                }
-
+                firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
+                        .collection("User").document(list.get(position).getDocumentId())
+                        .delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    list.remove(position);
+                                    notifyItemRemoved(position);
+                                    Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(context, "Failed to remove item from cart", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DetailedProductOverViewFragmentPopularProduct fragment = DetailedProductOverViewFragmentPopularProduct.newInstance(
                         product.getProductImage(),
                         product.getProductName(),
                         product.getProductRating(),
-                        Integer.parseInt(product.getProductPrice()),
+                        product.getProductPrice(),
                         product.getProductDescription(),
                         product.getProductType()
                 );
@@ -142,11 +117,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 } else {
                     Log.e("MyCartAdapter", "mainActivity is null");
                 }
-
             }
         });
-
-
     }
 
     @Override
@@ -155,16 +127,13 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView ProductName,ProductPrice,totalQuantity;
+        TextView ProductName, ProductPrice, totalQuantity;
         TextView totalPrice;
         ImageView ProductImage;
         MaterialButton remove_item_cart;
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
 
             remove_item_cart = itemView.findViewById(R.id.remove_item_cart_btn);
             ProductImage = itemView.findViewById(R.id.item_imginsearch);
@@ -172,8 +141,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             ProductPrice = itemView.findViewById(R.id.tv_price_item);
             totalQuantity = itemView.findViewById(R.id.quantity);
             totalPrice = itemView.findViewById(R.id.dispalytotalpricewithquantity);
-
-
         }
     }
 }

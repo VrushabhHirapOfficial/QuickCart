@@ -2,65 +2,114 @@ package com.vrushabhhirap.quickcart.Fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.vrushabhhirap.quickcart.Activity.MainActivity;
+import com.vrushabhhirap.quickcart.Adapter.AddressAdapter;
+import com.vrushabhhirap.quickcart.Model.AddressModel;
 import com.vrushabhhirap.quickcart.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment_YourAddressesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ProfileFragment_YourAddressesFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+import android.content.Context;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class ProfileFragment_YourAddressesFragment extends Fragment implements AddressAdapter.SelectedAddress{
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public ProfileFragment_YourAddressesFragment() {
-        // Required empty public constructor
-    }
+    RecyclerView recyclerView;
+    private List<AddressModel> addressModelList;
+    private AddressAdapter addressAdapter;
+    FirebaseFirestore firestore;
+    FirebaseAuth auth;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment_YourAddressesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment_YourAddressesFragment newInstance(String param1, String param2) {
-        ProfileFragment_YourAddressesFragment fragment = new ProfileFragment_YourAddressesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    MaterialButton AddAddress,ContinueToPayment;
+    MainActivity mainActivity;
+    String mAddress="";
+
+//    public void onAttach(Context context){
+//        super.onAttach(context);
+//        this.context = context;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        if (getActivity() instanceof MainActivity) {
+            mainActivity = (MainActivity) getActivity();
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile__your_addresses, container, false);
+        View view =  inflater.inflate(R.layout.fragment_profile__your_addresses, container, false);
+
+        AddAddress = view.findViewById(R.id.AddAddress);
+        ContinueToPayment = view.findViewById(R.id.continue_to_payment);
+        firestore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        recyclerView = view.findViewById(R.id.address_recycler);
+
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        addressModelList = new ArrayList<>();
+        addressAdapter= new AddressAdapter(getContext(),addressModelList,this);
+        recyclerView.setAdapter(addressAdapter);
+
+
+        firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                        .collection("Address").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for (DocumentSnapshot doc :task.getResult().getDocuments()){
+                                AddressModel addressModel = doc.toObject(AddressModel.class);
+                                addressModelList.add(addressModel);
+                                addressAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+                    }
+                });
+
+
+
+        ContinueToPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.loadFragment_for_detailedproduct(new Payment(),true);
+
+            }
+        });
+
+        AddAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.loadFragment_for_detailedproduct(new ProfileAddAddresses(),true);
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void setAddress(String address) {
+
+        mAddress = address;
     }
 }
