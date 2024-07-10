@@ -69,6 +69,8 @@ public class SearchResultFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         searchViewModelList = new ArrayList<>();
         searchViewAdapter = new SearchViewAdapter(getContext(), searchViewModelList, (MainActivity) getActivity());
+
+
         recyclerView.setAdapter(searchViewAdapter);
 
         Log.d("SearchResultFragment", "onCreateView: Received type " + type);

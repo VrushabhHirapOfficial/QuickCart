@@ -26,6 +26,7 @@ import com.vrushabhhirap.quickcart.R;
 import java.util.ArrayList;
 import java.util.List;
 import android.content.Context;
+import android.widget.TextView;
 
 public class ProfileFragment_YourAddressesFragment extends Fragment implements AddressAdapter.SelectedAddress{
 
@@ -35,21 +36,24 @@ public class ProfileFragment_YourAddressesFragment extends Fragment implements A
     private AddressAdapter addressAdapter;
     FirebaseFirestore firestore;
     FirebaseAuth auth;
+    TextView totalBill_tv;
+    TextView deliveryChargesAreAdded;
 
     MaterialButton AddAddress,ContinueToPayment;
     MainActivity mainActivity;
     String mAddress="";
-
-//    public void onAttach(Context context){
-//        super.onAttach(context);
-//        this.context = context;
-//    }
+    private int totalBill;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getActivity() instanceof MainActivity) {
             mainActivity = (MainActivity) getActivity();
+        }
+        Bundle bundle = getArguments();
+        if (bundle!= null) {
+            totalBill = bundle.getInt("totalBill");
+
         }
     }
 
@@ -63,7 +67,16 @@ public class ProfileFragment_YourAddressesFragment extends Fragment implements A
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         recyclerView = view.findViewById(R.id.address_recycler);
+        totalBill_tv = view.findViewById(R.id.totalBill_tv);
+        deliveryChargesAreAdded = view.findViewById(R.id.deliveryChargesAreAdded);
 
+        if(totalBill > 500 ){
+            totalBill_tv.setText("₹"+totalBill);
+        } else if (totalBill< 500) {
+            totalBill = totalBill + 99;
+            totalBill_tv.setText("₹"+totalBill);
+            deliveryChargesAreAdded.setText("*Delivery Charges of ₹99 are Added*");
+        }
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

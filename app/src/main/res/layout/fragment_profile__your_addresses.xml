@@ -44,38 +44,104 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
-        android:id="@+id/last"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="bottom|right"
+        android:orientation="horizontal"
         android:backgroundTint="@color/lightgrey"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:padding="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/AddAddress"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/quick_font"
-            android:text="Add"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="@color/addtocart">
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        </com.google.android.material.button.MaterialButton>
+                android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/continue_to_payment"
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total :"
+                    android:textStyle="bold"
+                    android:textSize="24sp">
+
+                </TextView>
+
+                <TextView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/totalBill_tv"
+                    android:textSize="24sp">
+
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/deliveryChargesAreAdded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="">
+
+                </TextView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/quick_font"
-            android:text="Continue"
-            android:backgroundTint="@color/buynow">
+            android:gravity="bottom|right"
 
-        </com.google.android.material.button.MaterialButton>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="15dp"
+            app:layout_constraintRight_toRightOf="parent">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/AddAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quick_font"
+                android:text="Add"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/addtocart">
+
+            </com.google.android.material.button.MaterialButton>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/continue_to_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quick_font"
+                android:text="Continue"
+                android:backgroundTint="@color/buynow">
+
+            </com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
+
 
 
 

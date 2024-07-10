@@ -165,6 +165,15 @@ public class MainActivity extends AppCompatActivity {
         }
         transaction.commit();
     }
+    public void loadFragment_for_going_to_payment(Fragment fragment, boolean addToBackStack, Bundle bundle) {
+        fragment.setArguments(bundle); // Set the arguments for the fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        if (addToBackStack) {
+            transaction.addToBackStack(null);
+        }
+        transaction.commit();
+    }
 
 
     @Override

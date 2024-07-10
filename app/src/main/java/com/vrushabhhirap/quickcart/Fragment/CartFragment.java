@@ -40,6 +40,7 @@ public class CartFragment extends Fragment {
     private static final String TAG_FIREBASE = "Firebase";
     private static final String TAG_BROADCAST = "BroadcastReceiver";
 
+
     RecyclerView recyclerView;
     List<myCartModel> cartModelList;
     MyCartAdapter myCartAdapter;
@@ -51,6 +52,8 @@ public class CartFragment extends Fragment {
     TextView ItemsTotal;
     TextView DeliveryCharges;
     TextView allTotal;
+    int totalBill;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,10 +85,15 @@ public class CartFragment extends Fragment {
         DeliveryCharges = view.findViewById(R.id.DeliveryCharges);
         allTotal = view.findViewById(R.id.allTotal);
 
+
         ProceedToPayment_btn = view.findViewById(R.id.ProceedToPayment_btn);
         ProceedToPayment_btn.setOnClickListener(v -> {
             Log.d(TAG_FRAGMENT, "ProceedToPayment_btn clicked");
-            mainActivity.loadFragment_for_detailedproduct(new ProfileFragment_YourAddressesFragment(), true);
+            Bundle bundle = new Bundle();
+            bundle.putInt("totalBill", totalBill);
+            mainActivity.loadFragment_for_going_to_payment(new ProfileFragment_YourAddressesFragment(), true,bundle);
+
+
         });
 
         // Registering BroadcastReceiver
@@ -134,19 +142,20 @@ public class CartFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG_BROADCAST, "BroadcastReceiver onReceive called");
-            int totalBill = intent.getIntExtra("totalAmount", 0);
+            totalBill = intent.getIntExtra("totalAmount", 0);
             Log.d(TAG_BROADCAST, "Total amount received: " + totalBill);
 
             ItemsTotal.setText("₹" + totalBill);
-            int overallTotal = totalBill + 99;
 
-            if (totalBill > 500) {
+            if(totalBill > 500){
                 DeliveryCharges.setText("FREE");
                 allTotal.setText("₹" + totalBill);
-            } else {
+            } else if (totalBill < 500) {
+                totalBill = totalBill + 99;
                 DeliveryCharges.setText("₹" + "99");
-                allTotal.setText("₹" + overallTotal);
+                allTotal.setText("₹" + totalBill);
             }
+
 
             Log.d(TAG_BROADCAST, "Updated UI with new totals");
         }

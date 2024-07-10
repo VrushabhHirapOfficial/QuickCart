@@ -59,6 +59,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
         SearchViewModel searchViewModel = list.get(position);
         holder.bind(searchViewModel);
 
+
         SearchViewModel product = list.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +69,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
                         product.getImg_url(),
                         product.getName(),
                         product.getRating(),
-                        (product.getPrice()),
+                        product.getPrice(),
                         product.getDescription(),
                         product.getType()
                 );
@@ -78,6 +79,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
 
         //Add to cart button on click
         holder.AddToCart.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "work in progress", Toast.LENGTH_SHORT).show();

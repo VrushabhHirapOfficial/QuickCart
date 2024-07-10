@@ -1,11 +1,9 @@
 package com.vrushabhhirap.quickcart.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.vrushabhhirap.quickcart.Activity.MainActivity;
-import com.vrushabhhirap.quickcart.Model.NewProductModel;
 import com.vrushabhhirap.quickcart.Model.PopularProductModel;
 import com.vrushabhhirap.quickcart.Model.SearchViewModel;
 import com.vrushabhhirap.quickcart.R;
@@ -34,6 +31,7 @@ import java.util.HashMap;
 
 public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
 
+//    private AddToCart addToCart;
     ImageView DetailedImage;
     TextView rating, name, description, price,quantity;
     MaterialButton addtothecart, buynow;
@@ -69,6 +67,8 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
 
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+
+//        addToCart = new AddToCart(firestore,auth);
 
         quantity = view.findViewById(R.id.quantity);
         DetailedImage = view.findViewById(R.id.product_image);
@@ -189,7 +189,9 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
         buynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainActivity.loadFragment_for_detailedproduct(new ProfileFragment_YourAddressesFragment(),true);
+                Bundle bundle = new Bundle();
+                bundle.putInt("totalBill", popularProduct.getPrice());
+                mainActivity.loadFragment_for_going_to_payment(new ProfileFragment_YourAddressesFragment(),true,bundle);
             }
         });
 
@@ -198,6 +200,7 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
             @Override
             public void onClick(View v) {
                 addToCart();
+//                cartManager.addToCart(popularProduct.getDescription(), popularProduct.getRating(), popularProduct.getImg_url(), popularProduct.getName(), popularProduct.getPrice(), Integer.parseInt(quantity.getText().toString()), popularProduct.getPrice());
 //                LastTotal = totalAmount + list.get(position).getTotalPrice();
 //                cartFragment.updateTotalAmount(totalAmount);
 

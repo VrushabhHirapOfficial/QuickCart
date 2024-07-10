@@ -61,6 +61,7 @@ public class DetailedProductOverViewFragmentNewProduct extends Fragment {
 
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+//        addToCart = new AddToCart(firestore, auth);
 
 
         quantity = view.findViewById(R.id.quantity);
@@ -96,7 +97,9 @@ public class DetailedProductOverViewFragmentNewProduct extends Fragment {
         buynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainActivity.loadFragment_for_detailedproduct(new ProfileFragment_YourAddressesFragment(),true);
+                Bundle bundle = new Bundle();
+                bundle.putInt("totalBill", product.getPrice());
+                mainActivity.loadFragment_for_going_to_payment(new ProfileFragment_YourAddressesFragment(),true,bundle);
             }
         });
 
@@ -106,6 +109,7 @@ public class DetailedProductOverViewFragmentNewProduct extends Fragment {
             @Override
             public void onClick(View v) {
                 addToCart();
+//                cartManager.addToCart(description.getText().toString(), rating.getText().toString(), product.getImg_url(), name.getText().toString(), product.getPrice(), Integer.parseInt(quantity.getText().toString()), totalPrice);
             }
         });
 
