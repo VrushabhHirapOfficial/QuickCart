@@ -20,6 +20,7 @@ import com.vrushabhhirap.quickcart.Fragment.CartFragment;
 import com.vrushabhhirap.quickcart.Fragment.CategoriesFragment;
 import com.vrushabhhirap.quickcart.Fragment.HomeFragment;
 import com.vrushabhhirap.quickcart.Fragment.ProfileFragment;
+import com.vrushabhhirap.quickcart.Model.AddressModel;
 import com.vrushabhhirap.quickcart.R;
 
 
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView iv_baglogo;
     TextView QuickCart;
     ImageView app_logo;
+    TextView Address_tv;
+
+    AddressModel addressModel;
 
 
 
@@ -51,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Address_tv = findViewById(R.id.Address_tv);
+
+//        setAddressInMainActivity();
+
 
         //Keyboad handling
         View mainLayout = findViewById(R.id.main); // Replace with your main layout ID
@@ -145,6 +153,16 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.navigation_home);
         }else {
 
+        }
+    }
+
+    public void setAddressInMainActivity() {
+        addressModel = new AddressModel("Address of the User", false);
+
+        if (addressModel != null && addressModel.getUserAddress() != null) {
+            Address_tv.setText(addressModel.getUserAddress());
+        } else {
+            Address_tv.setText("No address selected");
         }
     }
 

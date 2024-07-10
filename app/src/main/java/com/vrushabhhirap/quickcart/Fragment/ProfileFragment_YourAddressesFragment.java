@@ -216,7 +216,7 @@ public class ProfileFragment_YourAddressesFragment extends Fragment implements A
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         addressModelList = new ArrayList<>();
-        addressAdapter = new AddressAdapter(getContext(), addressModelList, this);
+        addressAdapter = new AddressAdapter(getContext(), addressModelList, this,mainActivity);
         recyclerView.setAdapter(addressAdapter);
 
         firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
@@ -236,9 +236,17 @@ public class ProfileFragment_YourAddressesFragment extends Fragment implements A
         ContinueToPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startPayment();
+                AddressModel addressModel = new AddressModel();
+                
+                if(isAnyAddressSelected()){
+                    startPayment();
+                }else{
+                    Toast.makeText(mainActivity, "Select the address", Toast.LENGTH_SHORT).show();
+                }
+                
             }
         });
+
 
         AddAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,6 +256,14 @@ public class ProfileFragment_YourAddressesFragment extends Fragment implements A
         });
 
         return view;
+    }
+    private boolean isAnyAddressSelected() {
+        for (AddressModel address : addressModelList) {
+            if (address.isSelected()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

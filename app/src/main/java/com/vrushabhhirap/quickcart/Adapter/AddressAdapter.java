@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+
+import com.vrushabhhirap.quickcart.Activity.MainActivity;
 import com.vrushabhhirap.quickcart.Model.AddressModel;
 import com.vrushabhhirap.quickcart.R;
 
@@ -24,10 +26,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     private RadioButton selectedRadioButton;
 
-    public AddressAdapter(Context context, List<AddressModel> addressModelList, SelectedAddress selectedAddress) {
+    MainActivity mainActivity;
+
+    public AddressAdapter(Context context, List<AddressModel> addressModelList, SelectedAddress selectedAddress,MainActivity mainActivity) {
         this.context = context;
         this.addressModelList = addressModelList;
         this.selectedAddress = selectedAddress;
+        this.mainActivity = mainActivity;
     }
 
     @NonNull
@@ -46,6 +51,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             @Override
             public void onClick(View v) {
 
+//                mainActivity.setAddressInMainActivity();
+
                 for(AddressModel address: addressModelList){
                     address.setSelected(false);
                 }
@@ -57,8 +64,11 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 selectedRadioButton = (RadioButton) v;
                 selectedRadioButton.setSelected(true);
                 selectedAddress.setAddress(addressModelList.get(position).getUserAddress());
+
+
             }
         });
+        holder.radioButton.setChecked(addressModelList.get(position).isSelected());
     }
 
     @Override

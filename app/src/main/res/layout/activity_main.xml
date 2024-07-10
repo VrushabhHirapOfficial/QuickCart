@@ -7,6 +7,71 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
 
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ActionBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="79dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        android:background="@color/PrimaryColor">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/app_logo"-->
+<!--            android:layout_width="41dp"-->
+<!--            android:layout_height="36dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            android:src="@drawable/quick_cart_logo">-->
+
+<!--        </ImageView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/QuickCart"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:fontFamily="@font/quick_font"-->
+<!--            android:text="QuickCart"-->
+<!--            android:textSize="24sp">-->
+
+<!--        </TextView>-->
+
+<!--&lt;!&ndash;        <EditText&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="180dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginStart="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:fontFamily="@font/quick_font"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:hint="Search"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:minHeight="48dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:singleLine="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:padding="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:paddingLeft="20dp">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </EditText>&ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="right"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:orientation="horizontal">-->
+<!--            <ImageView-->
+<!--                android:id="@+id/iv_baglogo"-->
+<!--                android:layout_width="39dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:src="@drawable/bag">-->
+
+<!--            </ImageView>-->
+
+<!--        </LinearLayout>-->
+
+
+<!--    </LinearLayout>-->
     <LinearLayout
         android:id="@+id/ActionBar"
         android:layout_width="match_parent"
@@ -23,9 +88,7 @@
             android:layout_height="36dp"
             android:layout_gravity="center"
             android:layout_marginStart="12dp"
-            android:src="@drawable/quick_cart_logo">
-
-        </ImageView>
+            android:src="@drawable/quick_cart_logo" />
 
         <TextView
             android:id="@+id/QuickCart"
@@ -35,37 +98,26 @@
             android:layout_marginStart="5dp"
             android:fontFamily="@font/quick_font"
             android:text="QuickCart"
-            android:textSize="24sp">
+            android:textSize="24sp" />
 
-        </TextView>
-
-        <EditText
-            android:layout_width="180dp"
+        <View
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/quick_font"
-            android:hint="Search"
-            android:minHeight="48dp"
-            android:singleLine="true"
-            android:padding="10dp"
-            android:paddingLeft="20dp">
+            android:layout_weight="1" />
 
-        </EditText>
         <ImageView
             android:id="@+id/iv_baglogo"
             android:layout_width="39dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/bag">
-
-        </ImageView>
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/bag" />
 
     </LinearLayout>
-    
-    
-    
+
+
+
+
     <ImageView
         android:id="@+id/line"
         android:layout_width="match_parent"
