@@ -21,8 +21,6 @@ import com.vrushabhhirap.quickcart.R;
 
 public class ProfileFragment extends Fragment {
 
-    //Button btn_logout;
-    //private FirebaseAuth auth;
 
     MaterialButton YourOrders,BuyAgain,YourAccount,YourList,YourAddresses,CustomerSupport,ReturnToHomePage;
     MainActivity mainActivity;
@@ -105,20 +103,6 @@ public class ProfileFragment extends Fragment {
 
 
 
-        //auth = FirebaseAuth.getInstance();
-
-//        btn_logout = view.findViewById(R.id.btn_logout);
-//
-//        btn_logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                auth.signOut();
-//                startActivity(new Intent(getActivity(), LoginActivity.class));
-//                getActivity().finish();
-//
-//            }
-//        });
 
         return view;
 

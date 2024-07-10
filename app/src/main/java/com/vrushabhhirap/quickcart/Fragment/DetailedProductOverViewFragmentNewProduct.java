@@ -181,11 +181,22 @@ public class DetailedProductOverViewFragmentNewProduct extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                        Toast.makeText(getContext(), "Added To Cart", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), "Added To Cart", Toast.LENGTH_SHORT).show();
+//
+//
+//                        if (getActivity() instanceof MainActivity) {
+//                            ((MainActivity) getActivity()).navigateToCart();
+//                        }
 
+                        if (task.isSuccessful()) {
+                            String documentId = task.getResult().getId();
+                            cartMap.put("documentId", documentId);
+                            task.getResult().set(cartMap);
 
-                        if (getActivity() instanceof MainActivity) {
-                            ((MainActivity) getActivity()).navigateToCart();
+                            Toast.makeText(getContext(), "Added To Cart", Toast.LENGTH_SHORT).show();
+                            if (getActivity() instanceof MainActivity) {
+                                ((MainActivity) getActivity()).navigateToCart();
+                            }
                         }
 
 

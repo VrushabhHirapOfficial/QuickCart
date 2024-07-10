@@ -80,26 +80,37 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         holder.remove_item_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
+                int position = holder.getAdapterPosition();
+                FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-//                int position = holder.getAdapterPosition();
-//                FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-//
-//                firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
-//                        .collection("User").document(list.get(position).getDocumentId())
-//                        .delete()
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    list.remove(position);
-//                                    notifyItemRemoved(position);
-//                                    Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
-//                                } else {
-//                                    Toast.makeText(context, "Failed to remove item from cart", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
+                firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
+                        .collection("User").document(product.getDocumentId())
+                        .delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    list.remove(position);
+                                    notifyItemRemoved(position);
+                                    Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
+
+                                    // Calculate new total amount
+                                    int newTotalAmount = 0;
+                                    for (myCartModel item : list) {
+                                        newTotalAmount += item.getTotalPrice();
+                                    }
+
+                                    // Send broadcast with new total amount
+                                    Intent intent = new Intent("MyTotalAmount");
+                                    intent.putExtra("totalAmount", newTotalAmount);
+                                    localBroadcastManager.sendBroadcast(intent);
+
+
+                                } else {
+                                    Toast.makeText(context, "Failed to remove item from cart", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 

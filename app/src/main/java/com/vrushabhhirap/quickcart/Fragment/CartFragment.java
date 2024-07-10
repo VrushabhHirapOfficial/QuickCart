@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -90,8 +91,13 @@ public class CartFragment extends Fragment {
         ProceedToPayment_btn.setOnClickListener(v -> {
             Log.d(TAG_FRAGMENT, "ProceedToPayment_btn clicked");
             Bundle bundle = new Bundle();
-            bundle.putInt("totalBill", totalBill);
-            mainActivity.loadFragment_for_going_to_payment(new ProfileFragment_YourAddressesFragment(), true,bundle);
+            if(totalBill>99){
+                bundle.putInt("totalBill", totalBill);
+                mainActivity.loadFragment_for_going_to_payment(new ProfileFragment_YourAddressesFragment(), true,bundle);
+            }else {
+                Toast.makeText(mainActivity, "No items in the cart", Toast.LENGTH_SHORT).show();
+            }
+            
 
 
         });
@@ -147,10 +153,15 @@ public class CartFragment extends Fragment {
 
             ItemsTotal.setText("₹" + totalBill);
 
-            if(totalBill > 500){
+            if (totalBill == 0) {
+                ItemsTotal.setText("₹"+totalBill);
+                DeliveryCharges.setText("₹0");
+                allTotal.setText("₹"+totalBill);
+
+            } else if(totalBill > 500){
                 DeliveryCharges.setText("FREE");
                 allTotal.setText("₹" + totalBill);
-            } else if (totalBill < 500) {
+            } else if (totalBill < 500 ) {
                 totalBill = totalBill + 99;
                 DeliveryCharges.setText("₹" + "99");
                 allTotal.setText("₹" + totalBill);
