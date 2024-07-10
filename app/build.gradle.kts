@@ -54,6 +54,8 @@ dependencies {
 
 //    implementation ("com.intuit.sdp:sdp-android:1.1.1")
 
+    implementation ("com.razorpay:checkout:1.6.12")
+
     implementation(libs.constraintlayout)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
