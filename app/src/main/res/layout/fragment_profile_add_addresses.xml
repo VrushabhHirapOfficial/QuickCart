@@ -71,6 +71,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ete_name"
+                    android:inputType="textPersonName"
                     android:singleLine="true"
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -93,6 +94,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addresslane"
+                    android:inputType="textPostalAddress"
                     android:singleLine="true"
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -116,6 +118,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ete_city"
                     android:singleLine="true"
+                    android:inputType="text"
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -137,6 +140,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ete_postalcode"
+                    android:inputType="number"
                     android:singleLine="true"
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -159,6 +163,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ete_phoneno"
+                    android:inputType="phone"
                     android:singleLine="true"
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
