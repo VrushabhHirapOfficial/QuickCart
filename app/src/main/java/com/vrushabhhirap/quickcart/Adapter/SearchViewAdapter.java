@@ -39,6 +39,12 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
 
+    public void updateProductsList(List<SearchViewModel> newProductsList) {
+        list.clear();
+        list.addAll(newProductsList);
+        notifyDataSetChanged();
+    }
+
     public SearchViewAdapter(Context context, List<SearchViewModel> list,MainActivity mainActivity) {
         this.context = context;
         this.list = list;

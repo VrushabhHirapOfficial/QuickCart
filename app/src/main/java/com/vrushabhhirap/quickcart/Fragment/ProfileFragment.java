@@ -52,7 +52,7 @@ public class ProfileFragment extends Fragment {
         YourOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainActivity.loadFragment(new ProfileFragment_YourOrdersYourListBuyAgainFragment(),true);
+                mainActivity.loadFragment(new SearchResultFragment(),true);
             }
         });
         BuyAgain.setOnClickListener(new View.OnClickListener() {

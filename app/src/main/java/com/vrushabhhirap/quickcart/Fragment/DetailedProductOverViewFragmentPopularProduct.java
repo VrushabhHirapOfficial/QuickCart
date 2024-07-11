@@ -189,8 +189,10 @@ public class DetailedProductOverViewFragmentPopularProduct extends Fragment {
         buynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                int totalBill = popularProduct.getPrice()* totalQuantity;
                 Bundle bundle = new Bundle();
-                bundle.putInt("totalBill", popularProduct.getPrice());
+                bundle.putInt("totalBill", totalBill);
                 mainActivity.loadFragment_for_going_to_payment(new ProfileFragment_YourAddressesFragment(),true,bundle);
             }
         });

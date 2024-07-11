@@ -6,7 +6,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,18 +17,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.razorpay.PaymentResultListener;
 import com.vrushabhhirap.quickcart.Fragment.CartFragment;
 import com.vrushabhhirap.quickcart.Fragment.CategoriesFragment;
 import com.vrushabhhirap.quickcart.Fragment.HomeFragment;
 import com.vrushabhhirap.quickcart.Fragment.ProfileFragment;
+import com.vrushabhhirap.quickcart.Fragment.ProfileFragment_YourAddressesFragment;
 import com.vrushabhhirap.quickcart.Model.AddressModel;
 import com.vrushabhhirap.quickcart.R;
 
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnScrollListener, PaymentResultListener {
 
     BottomNavigationView bottomNavigationView;
 
@@ -35,6 +40,25 @@ public class MainActivity extends AppCompatActivity {
     TextView Address_tv;
 
     AddressModel addressModel;
+
+    LinearLayout ActionBar;
+
+
+    @Override
+    public void onPaymentSuccess(String razorpayPaymentID) {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        if (fragment instanceof ProfileFragment_YourAddressesFragment) {
+            ((ProfileFragment_YourAddressesFragment) fragment).onPaymentSuccess(razorpayPaymentID);
+        }
+    }
+
+    @Override
+    public void onPaymentError(int code, String response) {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        if (fragment instanceof ProfileFragment_YourAddressesFragment) {
+            ((ProfileFragment_YourAddressesFragment) fragment).onPaymentError(code, response);
+        }
+    }
 
 
 
@@ -56,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Address_tv = findViewById(R.id.Address_tv);
+
+        ActionBar = findViewById(R.id.ActionBar);
 
 //        setAddressInMainActivity();
 
@@ -206,4 +232,40 @@ public class MainActivity extends AppCompatActivity {
             finish(); // Default back button behavior (finish activity)
         }
     }
+
+    @Override
+    public void onScrollUp() {
+        Log.d("ScrollListener", "onScrollUp called in MainActivity");
+        animateVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onScrollDown() {
+        Log.d("ScrollListener", "onScrollDown called in MainActivity");
+        animateVisibility(View.GONE);
+    }
+
+    private void animateVisibility(final int visibility) {
+        // Animate the bottom navigation view
+        bottomNavigationView.animate()
+                .translationY(visibility == View.VISIBLE ? 0 : bottomNavigationView.getHeight())
+                .setInterpolator(new AccelerateDecelerateInterpolator())
+                .setDuration(300)
+                .start();
+
+        // Animate the ActionBar (assuming it's the support action bar)
+        ActionBar.animate()
+                .translationY(visibility == View.VISIBLE ? 0 : -ActionBar.getHeight())
+                .setInterpolator(new AccelerateDecelerateInterpolator())
+                .setDuration(300)
+                .start();
+
+        // Animate the Address_tv
+        Address_tv.animate()
+                .translationY(visibility == View.VISIBLE ? 0 : Address_tv.getHeight())
+                .setInterpolator(new AccelerateDecelerateInterpolator())
+                .setDuration(300)
+                .start();
+    }
+
 }

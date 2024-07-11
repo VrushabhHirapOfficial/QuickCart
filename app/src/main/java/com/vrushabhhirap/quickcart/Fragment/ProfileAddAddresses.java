@@ -32,12 +32,18 @@ public class ProfileAddAddresses extends Fragment {
     FirebaseFirestore firestore;
     MainActivity mainActivity;
 
+    int totalBill;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getActivity() instanceof MainActivity) {
             mainActivity = (MainActivity) getActivity();
+        }
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            totalBill = bundle.getInt("totalBill");
         }
     }
 
@@ -98,8 +104,10 @@ public class ProfileAddAddresses extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                     if (task.isSuccessful()){
+                                        Bundle bundle = new Bundle();
+                                        bundle.putInt("totalBill",totalBill);
                                         Toast.makeText(getContext(), "Address Added", Toast.LENGTH_SHORT).show();
-                                        mainActivity.loadFragment_for_detailedproduct(new ProfileFragment_YourAddressesFragment(),true);
+                                        mainActivity.loadFragment_for_going_to_payment(new ProfileFragment_YourAddressesFragment(),true,bundle);
                                     }
                                 }
                             });

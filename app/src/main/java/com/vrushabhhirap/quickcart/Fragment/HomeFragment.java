@@ -1,6 +1,7 @@
 package com.vrushabhhirap.quickcart.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,33 @@ public class HomeFragment extends Fragment {
     FirebaseFirestore db;
 
 
+    //scrolling bottomnavigation hide
+    private OnScrollListener scrollListener;
+
+    public interface OnScrollListener {
+        void onScrollUp();
+        void onScrollDown();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnScrollListener) {
+            scrollListener = (OnScrollListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnScrollListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        scrollListener = null;
+    }
+
+
+
     public HomeFragment() {
     }
 
@@ -57,6 +85,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
 
         progressDialog = new ProgressDialog(getActivity());
         linearLayout = view.findViewById(R.id.home_layout);
@@ -82,6 +111,9 @@ public class HomeFragment extends Fragment {
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+
+
+
 
 
 
@@ -122,6 +154,8 @@ public class HomeFragment extends Fragment {
                 });
 
 
+
+
         //popular products section
 
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getActivity(), 2);
@@ -149,6 +183,28 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 });
+
+
+
+        // Scroll listener implementation
+        RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy); // Add this line to call the superclass method
+                Log.d("ScrollListener", "RecyclerView is scrolling, dx: " + dx + ", dy: " + dy);
+                if (dy > 0 && scrollListener != null) {
+                    Log.d("ScrollListener", "Scrolling down - hiding views in home fragment");
+                    scrollListener.onScrollDown();
+                } else if (dy < 0 && scrollListener != null) {
+                    Log.d("ScrollListener", "Scrolling up - showing views in home fragment");
+                    scrollListener.onScrollUp();
+                }
+            }
+        };
+
+        newProductRecyclerView.addOnScrollListener(onScrollListener);
+        popularProductsRecyclerView.addOnScrollListener(onScrollListener);
+
 
 
         return view;
