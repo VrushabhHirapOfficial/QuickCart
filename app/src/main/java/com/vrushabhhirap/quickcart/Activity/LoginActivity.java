@@ -3,6 +3,7 @@ package com.vrushabhhirap.quickcart.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.etemail);
         password = findViewById(R.id.etpass);
+        password.setTransformationMethod(new PasswordTransformationMethod());
 
         noacc = findViewById(R.id.noacc);
         loginButton = findViewById(R.id.login_button);

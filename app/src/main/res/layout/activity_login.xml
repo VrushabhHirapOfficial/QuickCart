@@ -105,6 +105,7 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
                     android:hint="@string/enter_email"
                     android:fontFamily="@font/quick_font"
                     android:paddingStart="50dp"
@@ -131,7 +132,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_password"
+                    android:inputType="textPassword"
                     android:fontFamily="@font/quick_font"
+
                     android:paddingStart="50dp"
                     android:shadowRadius="15"
                     android:textColorHint="@color/AccentColor" />
