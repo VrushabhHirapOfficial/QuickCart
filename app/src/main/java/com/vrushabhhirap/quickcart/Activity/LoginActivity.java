@@ -99,15 +99,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
-
     }
     public void loginUser(View view){
         String useremail = email.getText().toString();
